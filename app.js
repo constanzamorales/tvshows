@@ -5,8 +5,12 @@ form.addEventListener("submit", async function (e) {
 	const response = await axios.get(
 		`http://api.tvmaze.com/search/shows?q=${searchTerm}`
 	);
-	console.log(response.data[0].show.image.medium);
-	const img = document.createElement("IMG");
-	img.src = res.data[0].show.image.medium;
-	document.body.append(img);
 });
+
+const makeImages = (shows) => {
+	for (let result of shows) {
+		const img = document.createElement("IMG");
+		img.src = result.show.image.medium;
+		document.body.append(img);
+	}
+};
